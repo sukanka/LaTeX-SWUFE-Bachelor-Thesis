@@ -1,0 +1,65 @@
+% !TEX TS-program = xelatex
+% !BIB program = biber
+\documentclass{swufethss-b}
+% 插入引言区
+\input{body/preamble.tex}
+
+\title{西南财经大学本科毕业论文\LaTeX 模板}
+\author{张三}
+\date{2019 年 12 月 31 日}
+\swufeyear{2020}
+\swufeschool{金融学院}
+\swufemajor{信用管理}
+\swufestudentid{41635000}
+\swufeadviser{}
+\swufegrade{}
+\swufefinishdate{2019 年 12 月}
+\swufesigndate{2019 年 12 月 31 日}
+
+% 从 ref.bib 中读入参考文献
+\addbibresource{body/ref.bib}
+
+% 设置公式字体（其它字体在模板中已设置好）
+
+
+\begin{document}
+% 页码在 PDF 阅读器中显示为罗马数字
+\pagenumbering{roman}
+% 关闭页眉、页脚
+\pagestyle{empty}
+
+% 生成封面
+\maketitle
+% 或者使用 Microsoft Word 制作封面后导入
+%\includepdf[pages={-}]{封面.pdf}
+
+\clearpage
+% 关闭页脚
+\pagestyle{swufe-bachelor-empty}
+% 插入摘要
+\input{body/abstract.tex}
+
+\tableofcontents
+
+\clearpage
+% 将页码重置为 1
+\pagenumbering{arabic}
+% 开启页脚
+\pagestyle{swufe-bachelor}
+
+
+% 插入引言、文献综述等，根据自己需要修改
+\input{body/introduction}
+\input{body/main_part}
+\input{body/conclusion}
+
+% 列出参考文献
+\newpage
+\printbibliography[heading=bibintoc]
+\newpage
+\input{body/acknowledgement.tex}
+%插入附录，如果有
+\newpage
+\input{body/appendix.tex}
+
+\end{document}
