@@ -28,12 +28,28 @@
 % This template is modified from HDU-Bachelor-Thesis,
 % see https://github.com/m13253/LaTeX-HDU-Bachelor-Thesis
 
+% TODO LIST:
+% 修改 footnote 格式
+% 修改图表标题格式
+% 优化首页排版
+% 将封底改为LaTeX 原生制作
+
+
+
+
+
+
+
+
+
+
+
 \NeedsTeXFormat{LaTeX2e}
 
 \ProvidesClass{swufethss-b}[2019/12/31 Bachelor thesis template for Southwestern Univeristy of Finance and Economics]
 
 % 防止 fontspec 与 mathspec 冲突
-\PassOptionsToPackage{no-math}{fontspec}
+%\PassOptionsToPackage{no-math}{fontspec}
 % 启用 GB/T 7714-2015 参考文献格式
 % 需要安装 biblatex-gb7714-2015
 \PassOptionsToPackage{backend=biber,style=gb7714-2015}{biblatex}
@@ -46,9 +62,9 @@
 \RequirePackage{caption}
 
 % 设置字体
-\RequirePackage[no-math]{fontspec}
-% 设置带圈角标
-\RequirePackage[stable,perpage,symbol*]{footmisc}
+\RequirePackage{fontspec}
+% 设置脚注格式
+\RequirePackage[stable,perpage]{footmisc}
 % 页边距设置
 \RequirePackage[a4paper,top=3cm,bottom=3cm, left=3cm, right=3cm,headheight=10.5bp,headsep=1cm-10.5bp,footskip=1cm-2.953125bp]{geometry}
 % 启用 PDF 超链接
@@ -61,6 +77,8 @@
 \RequirePackage{xeCJK}
 % 插入封底pdf
 \RequirePackage{pdfpages}
+
+\RequirePackage{amsmath}
 
 % 超链接格式设置
 \hypersetup{unicode=true,linktoc=all,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green}
@@ -83,15 +101,18 @@
 \newfontfamily{\swufe@SimHei}{SimHei}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
 \newfontfamily{\swufe@SimKai}{KaiTi}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
 \newfontfamily{\swufe@FangSong}{FangSong}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
+\newfontfamily{\swufe@STFangsong}{STFangsong}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
 \setCJKfamilyfont{zhsong}{SimSun}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
 \setCJKfamilyfont{zhhei}{SimHei}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
 \setCJKfamilyfont{zhfang}{FangSong}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
 \setCJKfamilyfont{zhkai}{KaiTi}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
 \setCJKfamilyfont{STZhongsong}{STZhongsong}[AutoFakeBold=2,ItalicFont={STZhongsong}]
+\setCJKfamilyfont{hwzhfang}{STFangsong}[AutoFakeBold=2,ItalicFont={STFangsong}]
 
 \setCJKromanfont{SimSun}[AutoFakeBold=1.5,ItalicFont={FangSong}]
 \setCJKsansfont{SimHei}[AutoFakeBold=1.5,ItalicFont={KaiTi}]
 \setCJKmonofont{FangSong}[AutoFakeBold=1.5,ItalicFont={FangSong}]
+
 
 
 % 关掉 CTeX 的 1.3 倍行距
@@ -142,6 +163,9 @@
 \titleformat{\subsubsection}{\sffamily\CJKfamily{zhhei}\fontsize{12bp}{18bp}\selectfont}{\thesubsubsection}{1em}{}
 \titlespacing{\subsubsection}{0bp}{12bp}{12bp}
 
+% \RequirePackage{scrextend}
+% \deffootnote[1.5em]{1.5em}{1em}{\fontsize{9bp}{9bp}\thefootnotemark.\space}
+
 % 设置目录格式
 \renewcommand{\contentsname}{\CJKfamily{STZhongsong}\fontsize{22bp}{33bp} \bfseries 目\hspace{2em}录}
 \contentsmargin{0bp}
@@ -170,13 +194,6 @@
 \def\AMSautorefname{公式}%
 \def\theoremautorefname{定理}%
 \def\pageautorefname{页面}%
-
-% 设置带圈角标
-% 感谢南京大学计算机科学与技术系胡海星编写的《NJU-Thesis:南京大学学位论文 XeLaTeX 模板》
-\DefineFNsymbols*{circlednumber}[text]{{①}{②}{③}{④}{⑤}{⑥}{⑦}{⑧}{⑨}{⑩}{⑪}{⑫}{⑬}{⑭}{⑮}{⑯}{⑰}{⑱}{⑲}{⑳}{㉑}{㉒}{㉓}{㉔}{㉕}{㉖}{㉗}{㉘}{㉙}{㉚}{㉛}{㉜}{㉝}{㉞}{㉟}{㊱}{㊲}{㊳}{㊴}{㊵}{㊶}{㊷}{㊸}{㊹}{㊺}{㊻}{㊼}{㊽}{㊾}{㊿}}
-\setfnsymbol{circlednumber}
-% 修复带圈数字可能无法正确显示的问题
-\xeCJKDeclareCharClass{CJK}{`⓪,`①->`⑳,`㉑->`㉟,`㊱->`㊿,`⓿,`❶->`❿,`⓫->`⓴}
 
 % PDF 元数据设置
 \AtBeginDocument{\hypersetup{pdfinfo={
@@ -217,7 +234,7 @@
     \clearpage\thispagestyle{empty}%
     \par\noindent\parbox[t]{21cm}{%
         \vspace{\topskip}\vspace*{-\topskip}%
-        \swufe@FangSong\CJKfamily{zhfang}\fontsize{16bp}{0bp}\selectfont%
+        \swufe@STFangsong\CJKfamily{hwzhfang}\fontsize{16bp}{0bp}\selectfont%
        \parbox[t][90bp][t]{323.5bp}{\centering\includegraphics[width=323.5bp,height=90bp]{swufe-Logo/transparent.png}}%
         
         \vspace{25.25bp}\hspace{23bp}\parbox[t][36bp][t]{13cm}{\centering\CJKfamily{zhhei}\fontsize{36bp}{51.25bp}\bfseries {\swufe@year}\hspace{0.25em}届}
@@ -225,48 +242,47 @@
         \vspace{5.75bp}\hspace{23bp}\parbox[t][36bp][t]{360.5bp}{\centering\CJKfamily{zhhei}\fontsize{36bp}{51.25bp}\selectfont\bfseries 本科毕业论文（设计）}%
         
 %
-        \vspace{60.625bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\fontsize{16bp}{19.21875bp}\selectfont\bfseries 论\hspace{\fill}文\hspace{\fill}题\hspace{\fill}目：}\hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\@title}}%
+        \vspace{60.625bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 论\hspace{\fill}文\hspace{\fill}题\hspace{\fill}目：}\hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\@title}}%
 
         \hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
 
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\fontsize{16bp}{19.21875bp}\selectfont\bfseries 学\hspace{\fill}生\hspace{\fill}姓\hspace{\fill}名：}
+        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 学\hspace{\fill}生\hspace{\fill}姓\hspace{\fill}名：}
         %
         \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\@author}}%
 
         \vspace{5.75bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
 
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\fontsize{16bp}{19.21875bp}\selectfont\bfseries 所\hspace{\fill}在\hspace{\fill}学\hspace{\fill}院：}
+        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 所\hspace{\fill}在\hspace{\fill}学\hspace{\fill}院：}
         %
         \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@school}}%
 
         \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
 
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\fontsize{16bp}{19.21875bp}\selectfont\bfseries 专\hspace{\fill}业：}
+        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 专\hspace{\fill}业：}
         %
         \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@major}}%
 
         \vspace{5.625bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
 
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\fontsize{16bp}{19.21875bp}\selectfont\bfseries 学\hspace{\fill}号：}
+        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 学\hspace{\fill}号：}
         %
         \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@studentid}}%
 
         \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
 
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\fontsize{16bp}{19.21875bp}\selectfont\bfseries 指\hspace{\fill}导\hspace{\fill}教\hspace{\fill}师：}
+        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 指\hspace{\fill}导\hspace{\fill}教\hspace{\fill}师：}
         %
         \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@adviser}}%
 
         \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
 
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\fontsize{16bp}{19.21875bp}\selectfont\bfseries 成\hspace{\fill}绩：}
+        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 成\hspace{\fill}绩：}
         %
         \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@grade}}%
 
         \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
 
 
-        %\vspace{25.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\fontsize{16bp}{19.21875bp}\selectfont\bfseries 完\hspace{\fill}成\hspace{\fill}日\hspace{\fill}期：}
         
         \vspace{100bp}\hspace{103bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@finishdate}}%
 
