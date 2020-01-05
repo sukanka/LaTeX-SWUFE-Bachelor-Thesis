@@ -1,3 +1,4 @@
+% 设置参考文献格式。
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 % 导入 \sout
 \usepackage{ulem}
@@ -5,13 +6,13 @@
 \usepackage{xcolor}
 % 采用如下配置以取消 hyperref 的高亮
 %\usepackage[unicode=true,hidelinks,linktoc=all]{hyperref}
-\usepackage{cleveref}
 \usepackage{theorem}
 \newtheorem{definition}{定义}
 % 生成中英文随机文字的包
 \usepackage{lipsum,zhlipsum}
-
+% Excel2LateX 需要的两个包
 \usepackage{multirow}
 \usepackage{bigstrut}
-\usepackage{listings} % highlight julia codes.
-\usepackage{body/code/jlcode}
+% 代码高亮的两个包
+\usepackage{listings} 
+\usepackage{body/code/jlcode}% highlight julia codes.
