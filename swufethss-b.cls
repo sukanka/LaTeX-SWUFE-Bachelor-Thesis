@@ -60,10 +60,13 @@
 \RequirePackage{calc}
 % 设置题注格式
 \RequirePackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\captionsetup{font+=bf}
+
 
 % 设置字体
 \RequirePackage{fontspec}
-% 设置脚注格式
+% 设置脚注格式，每页清零
 \RequirePackage[stable,perpage]{footmisc}
 % 页边距设置
 \RequirePackage[a4paper,top=3cm,bottom=3cm, left=3cm, right=3cm,headheight=10.5bp,headsep=1cm-10.5bp,footskip=1cm-2.953125bp]{geometry}
@@ -97,21 +100,21 @@
 %     ]{times.ttf}
 \RequirePackage{newtxtext}
 %
-\newfontfamily{\swufe@SimSun}{SimSun}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\newfontfamily{\swufe@SimHei}{SimHei}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\newfontfamily{\swufe@SimKai}{KaiTi}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\newfontfamily{\swufe@FangSong}{FangSong}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\newfontfamily{\swufe@STFangsong}{STFangsong}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\setCJKfamilyfont{zhsong}{SimSun}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\setCJKfamilyfont{zhhei}{SimHei}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\setCJKfamilyfont{zhfang}{FangSong}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\setCJKfamilyfont{zhkai}{KaiTi}[AutoFakeBold=1.5,AutoFakeSlant=0.25]
-\setCJKfamilyfont{STZhongsong}{STZhongsong}[AutoFakeBold=2,ItalicFont={STZhongsong}]
-\setCJKfamilyfont{hwzhfang}{STFangsong}[AutoFakeBold=2,ItalicFont={STFangsong}]
+\newfontfamily{\swufe@SimSun}{SimSun}[AutoFakeBold,AutoFakeSlant=0.25]
+\newfontfamily{\swufe@SimHei}{SimHei}[AutoFakeBold,AutoFakeSlant=0.25]
+\newfontfamily{\swufe@SimKai}{KaiTi}[AutoFakeBold,AutoFakeSlant=0.25]
+\newfontfamily{\swufe@FangSong}{FangSong}[AutoFakeBold,AutoFakeSlant=0.25]
+\newfontfamily{\swufe@STFangsong}{STFangsong}[AutoFakeBold,AutoFakeSlant=0.25]
+\setCJKfamilyfont{zhsong}{SimSun}[AutoFakeBold,AutoFakeSlant=0.25]
+\setCJKfamilyfont{zhhei}{SimHei}[AutoFakeBold,AutoFakeSlant=0.25]
+\setCJKfamilyfont{zhfang}{FangSong}[AutoFakeBold,AutoFakeSlant=0.25]
+\setCJKfamilyfont{zhkai}{KaiTi}[AutoFakeBold,AutoFakeSlant=0.25]
+\setCJKfamilyfont{STZhongsong}{STZhongsong}[AutoFakeBold,ItalicFont={STZhongsong}]
+\setCJKfamilyfont{hwzhfang}{STFangsong}[AutoFakeBold,ItalicFont={STFangsong}]
 
-\setCJKromanfont{SimSun}[AutoFakeBold=1.5,ItalicFont={FangSong}]
-\setCJKsansfont{SimHei}[AutoFakeBold=1.5,ItalicFont={KaiTi}]
-\setCJKmonofont{FangSong}[AutoFakeBold=1.5,ItalicFont={FangSong}]
+\setCJKromanfont{SimSun}[AutoFakeBold,ItalicFont={FangSong}]
+\setCJKsansfont{SimHei}[AutoFakeBold,ItalicFont={KaiTi}]
+\setCJKmonofont{FangSong}[AutoFakeBold,ItalicFont={FangSong}]
 
 
 
@@ -133,7 +136,6 @@
 \renewcommand{\Huge}{\fontsize{26bp}{33.3125bp}\selectfont}
 
 % 设置题注格式
-\captionsetup{font=small}
 
 % 设置页眉页脚
 % 可以 \swufeheader{文字} 来改变页眉内容
@@ -229,6 +231,23 @@
 \newcommand{\swufegrade}[1]{\renewcommand{\swufe@grade}{#1}}
 \newcommand{\swufefinishdate}[1]{\renewcommand{\swufe@finishdate}{#1}}
 \newcommand{\swufesigndate}[1]{\renewcommand{\swufe@signdate}{#1}}
+
+\newenvironment{abstractzh}[1][摘要]
+{\begin{center}
+    \filcenter\CJKfamily{STZhongsong}\fontsize{22bp}{33bp}\selectfont 摘要
+\end{center}
+\par \begin{bfseries}
+
+}{\end{bfseries}\clearpage}
+\newcommand{\keywordszh}[1]{\par 关键词： #1}
+
+\newenvironment{abstracten}[1][ABSTRACT]
+{\begin{center}
+    \filcenter\CJKfamily{STZhongsong}\fontsize{22bp}{33bp}\selectfont ABSTRACT
+\end{center}
+\par \begin{bfseries}
+}{\end{bfseries}\clearpage}
+\newcommand{\keywordsen}[1]{\par\noindent Keywords: #1}
 
 \renewcommand{\maketitle}{%
     \clearpage\thispagestyle{empty}%
