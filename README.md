@@ -25,4 +25,15 @@ LaTeX template for bachelor thesis of Southwestern University of Finance and Eco
 ```
 为文档模板。
 
+为了能够正确地编译，需要有以下字体
+```
+SimSun 宋体
+SimHei 黑体
+FangSong 仿宋
+KaiTi 楷体
+STZhongsong 华文中宋
+STFangsong  华文仿宋
+```
+Windows 系统已经自带了上述字体， Linux 系统请复制一份上述字体，放到 `/usr/share/fonts/win/` 下。
+
 如果需要输出 Microsoft Word 格式以进行论文查重，可以尝试 Foxit PDF 转 Word（付费软件）。本模板的排版效果可被其识别。
