@@ -82,6 +82,9 @@
 \RequirePackage{pdfpages}
 
 \RequirePackage{amsmath}
+% 修改 tabular 默认字号small.
+\RequirePackage{etoolbox}
+\AtBeginEnvironment{tabular}{\small}
 
 % 超链接格式设置
 \hypersetup{unicode=true,linktoc=all,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green}
