@@ -8,22 +8,14 @@ LaTeX template for bachelor thesis of Southwestern University of Finance and Eco
 
 这个模板目前只支持 XeLaTeX 引擎，不支持 pdfLaTeX 和 LuaLaTeX 引擎。
 
-这个模板包含一个内建的封面，可以使用
-```
-\maketitle
-```
-命令来调用内建的封面。也可以使用 Microsoft Word 制作封面，导出 PDF 后使用
-```
-\includepdf[pages={-}]{封面.pdf}
-```
-命令来插入封面。
-
-欲使用这个模板，请将 swufethss-b.cls 复制到你的工程目录下，并指定
+欲使用这个模板，请将 swufethss-b.cls 复制到你的工程目录下，并指定以下之一
 
 ```
-\documentclass{swufethss-b}
+\documentclass{swufethss-b} % 检测版
+\documentclass[final]{swufethss-b} % 完整版
 ```
 为文档模板。
+**注意： 检测版应去掉封面、目录、版权申明、致谢、后记和附录与封底。其中模板自动注释掉了封面、目录、版权申明、封底，你需要手动注释掉致谢、后记和附录。
 
 为了能够正确地编译，需要有以下字体
 ```

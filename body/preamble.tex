@@ -1,5 +1,7 @@
 % 设置参考文献格式。
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
+% 从 ref.bib 中读入参考文献
+\addbibresource{body/ref.bib}
 % 导入 \sout
 \usepackage{ulem}
 % 导入 \textcolor
@@ -15,5 +17,5 @@
 \usepackage{bigstrut}
 % 代码高亮的两个包
 \usepackage{listings} 
-\usepackage{body/code/jlcode}% highlight julia codes.
 \usepackage{verbatim}
+\usepackage{body/code/jlcode}% highlight julia codes.

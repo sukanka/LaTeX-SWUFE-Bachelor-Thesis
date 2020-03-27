@@ -52,10 +52,118 @@
 %\PassOptionsToPackage{no-math}{fontspec}
 % 启用 GB/T 7714-2015 参考文献格式
 % 需要安装 biblatex-gb7714-2015
-\PassOptionsToPackage{backend=biber,style=gb7714-2015}{biblatex}
+
 
 % 调用基类 CTeX Article
 \LoadClass[fontset=none,zihao=-4]{ctexart}
+
+
+\renewcommand{\tableofcontents}{} %取消 \tableofcontents 的定义
+\DeclareOption{final}{
+    % 恢复 \tableofcontents 的定义
+    \renewcommand{\tableofcontents}{\section *{\contentsname \@mkboth {\MakeUppercase \contentsname }{\MakeUppercase \contentsname }}\@starttoc {toc}}
+% 制作封面
+\pagenumbering{roman}% 页码在 PDF 阅读器中显示为罗马数字
+\pagestyle{empty}  % 关闭页眉、页脚
+
+\renewcommand{\maketitle}{%
+\clearpage\thispagestyle{empty}%
+\par\noindent\parbox[t]{21cm}{%
+    \vspace{\topskip}\vspace*{-\topskip}%
+    \swufe@STFangsong\CJKfamily{hwzhfang}\fontsize{16bp}{0bp}\selectfont%
+   \parbox[t][90bp][t]{323.5bp}{\centering\includegraphics[width=323.5bp,height=90bp]{swufe-Logo/transparent.png}}%
+    
+    \vspace{25.25bp}\hspace{23bp}\parbox[t][36bp][t]{13cm}{\centering\CJKfamily{zhhei}\fontsize{36bp}{51.25bp}\bfseries {\swufe@year}\hspace{0.25em}届}
+
+    \vspace{5.75bp}\hspace{23bp}\parbox[t][36bp][t]{360.5bp}{\centering\CJKfamily{zhhei}\fontsize{36bp}{51.25bp}\selectfont\bfseries 本科毕业论文（设计）}%
+    
+%
+    \vspace{60.625bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 论\hspace{\fill}文\hspace{\fill}题\hspace{\fill}目：}\hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\@title}}%
+
+    \hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
+
+    \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 学\hspace{\fill}生\hspace{\fill}姓\hspace{\fill}名：}
+    %
+    \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\@author}}%
+
+    \vspace{5.75bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
+
+    \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 所\hspace{\fill}在\hspace{\fill}学\hspace{\fill}院：}
+    %
+    \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@school}}%
+
+    \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
+
+    \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 专\hspace{\fill}业：}
+    %
+    \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@major}}%
+
+    \vspace{5.625bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
+
+    \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 学\hspace{\fill}号：}
+    %
+    \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@studentid}}%
+
+    \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
+
+    \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 指\hspace{\fill}导\hspace{\fill}教\hspace{\fill}师：}
+    %
+    \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@adviser}}%
+
+    \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
+
+    \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 成\hspace{\fill}绩：}
+    %
+    \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@grade}}%
+
+    \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
+
+
+    
+    \vspace{100bp}\hspace{103bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@finishdate}}%
+
+    %\vspace{5.5bp}\hspace*{95bp}\rule[0pt]{262.5bp}{0.5bp}%
+
+    \vspace{\fill}%
+    \clearpage
+}%
+%
+%
+% 承诺页
+\clearpage\thispagestyle{empty}%
+\par\noindent\parbox[t]{15cm}{
+    \vspace{\topskip}\vspace*{-\topskip}%
+    \swufe@SimSun\CJKfamily{zhsong}\fontsize{12bp}{0bp}\selectfont%
+
+    \vspace*{85.25bp}\parbox[t][18bp][t]{15cm}{\centering\CJKfamily{STZhongsong}\fontsize{18bp}{23.0625bp}\selectfont\bfseries 西南财经大学}%
+
+    \parbox[t][18bp][t]{15cm}{\centering\CJKfamily{STZhongsong}\fontsize{18bp}{23.0625bp}\selectfont\bfseries 本科毕业论文原创性及知识产权声明}%
+
+    \vspace{20.625bp}\parbox[t]{15cm}{\sffamily\CJKfamily{STZhongsong}\fontsize{12bp}{15bp}\selectfont\leavevmode{\parindent=2em\indent}本人郑重声明：所呈交的毕业论文是本人在导师的指导下取得的成果，论文写作严格遵循学术规范。对本论文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本毕业论文引起的法律结果完全由本人承担。}%
+
+    \vspace{9bp}\parbox[t]{15cm}{\sffamily\CJKfamily{STZhongsong}\fontsize{12bp}{15bp}\selectfont\leavevmode{\parindent=2em\indent}本毕业论文成果归西南财经大学所有。}%
+
+    \vspace{40.625bp}\parbox[t]{15cm}{\sffamily\CJKfamily{STZhongsong}\fontsize{12bp}{15bp}\selectfont\leavevmode{\parindent=2em\indent}特此声明}%
+
+    \vspace{180bp}
+    \parbox[t][12bp][t]{\textwidth}{\sffamily\CJKfamily{zhsong}\fontsize{12bp}{35bp}\selectfont\hspace*{300bp}\bfseries 毕业论文作者签名：}%
+
+    \vspace{9bp}\parbox[t][12bp][t]{\textwidth}{\sffamily\CJKfamily{zhsong}\fontsize{12bp}{35bp}\selectfont\hspace*{350bp}\bfseries 作者专业：}%
+
+    \vspace{9bp}\parbox[t][12bp][t]{\textwidth}{\sffamily\CJKfamily{zhsong}\fontsize{12bp}{35bp}\selectfont\hspace*{350bp}\bfseries 作者学号：}%
+
+    \vspace{9bp}
+    \parbox[t][12bp][t]{\textwidth}{\swufe@SimSun\CJKfamily{zhsong}\fontsize{12bp}{35bp}\selectfont\hspace*{290bp}\bfseries{\swufe@signdate}}%
+
+    \vspace{\fill}%
+}%
+\clearpage%
+}
+\AtEndDocument{\includepdf{swufe-Logo/lastpage.pdf}}
+}
+\PassOptionsToPackage{backend=biber,style=gb7714-2015}{biblatex}
+\ProcessOptions\relax
+
 % 尺寸运算功能
 \RequirePackage{calc}
 % 设置题注格式
@@ -236,116 +344,31 @@
 \newcommand{\swufesigndate}[1]{\renewcommand{\swufe@signdate}{#1}}
 
 \newenvironment{abstractzh}[1][摘要]
-{\begin{center}
+{\pagenumbering{arabic}
+% 开启页脚
+\pagestyle{swufe-bachelor}
+    \begin{center}
     \filcenter\CJKfamily{STZhongsong}\fontsize{22bp}{33bp}\selectfont 摘要
 \end{center}
 \par \begin{bfseries}
 
-}{\end{bfseries}\clearpage}
+}{\end{bfseries}\clearpage \pagenumbering{arabic}}
 \newcommand{\keywordszh}[1]{\par 关键词： #1}
 
 \newenvironment{abstracten}[1][ABSTRACT]
-{\begin{center}
+{\pagenumbering{arabic}
+% 开启页脚
+\pagestyle{swufe-bachelor}
+    \begin{center}
     \filcenter\CJKfamily{STZhongsong}\fontsize{22bp}{33bp}\selectfont ABSTRACT
 \end{center}
 \par \begin{bfseries}
-}{\end{bfseries}\clearpage}
+}{\end{bfseries}\clearpage \pagenumbering{arabic}}
 \newcommand{\keywordsen}[1]{\par\noindent Keywords: #1}
 
-\renewcommand{\maketitle}{%
-    \clearpage\thispagestyle{empty}%
-    \par\noindent\parbox[t]{21cm}{%
-        \vspace{\topskip}\vspace*{-\topskip}%
-        \swufe@STFangsong\CJKfamily{hwzhfang}\fontsize{16bp}{0bp}\selectfont%
-       \parbox[t][90bp][t]{323.5bp}{\centering\includegraphics[width=323.5bp,height=90bp]{swufe-Logo/transparent.png}}%
-        
-        \vspace{25.25bp}\hspace{23bp}\parbox[t][36bp][t]{13cm}{\centering\CJKfamily{zhhei}\fontsize{36bp}{51.25bp}\bfseries {\swufe@year}\hspace{0.25em}届}
 
-        \vspace{5.75bp}\hspace{23bp}\parbox[t][36bp][t]{360.5bp}{\centering\CJKfamily{zhhei}\fontsize{36bp}{51.25bp}\selectfont\bfseries 本科毕业论文（设计）}%
-        
-%
-        \vspace{60.625bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 论\hspace{\fill}文\hspace{\fill}题\hspace{\fill}目：}\hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\@title}}%
-
-        \hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
-
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 学\hspace{\fill}生\hspace{\fill}姓\hspace{\fill}名：}
-        %
-        \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\@author}}%
-
-        \vspace{5.75bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
-
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 所\hspace{\fill}在\hspace{\fill}学\hspace{\fill}院：}
-        %
-        \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@school}}%
-
-        \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
-
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 专\hspace{\fill}业：}
-        %
-        \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@major}}%
-
-        \vspace{5.625bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
-
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 学\hspace{\fill}号：}
-        %
-        \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@studentid}}%
-
-        \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
-
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 指\hspace{\fill}导\hspace{\fill}教\hspace{\fill}师：}
-        %
-        \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@adviser}}%
-
-        \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
-
-        \vspace{5.75bp}\hspace*{23bp}\parbox[t][16bp][t]{80bp}{\CJKfamily{zhfang}\fontsize{16bp}{19.21875bp}\selectfont\bfseries 成\hspace{\fill}绩：}
-        %
-        \hspace{12bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@grade}}%
-
-        \vspace{5.5bp}\hspace*{103bp}\rule[0pt]{262.5bp}{0.5bp}%
-
-
-        
-        \vspace{100bp}\hspace{103bp}\parbox[b][16bp][b]{262.5bp}{\centering\fontsize{16bp}{19.21875bp}\selectfont{\swufe@finishdate}}%
-
-        %\vspace{5.5bp}\hspace*{95bp}\rule[0pt]{262.5bp}{0.5bp}%
-
-        \vspace{\fill}%
-    }%
-    %
-    %
-    % 承诺页
-    \clearpage\thispagestyle{empty}%
-    \par\noindent\parbox[t]{15cm}{
-        \vspace{\topskip}\vspace*{-\topskip}%
-        \swufe@SimSun\CJKfamily{zhsong}\fontsize{12bp}{0bp}\selectfont%
-
-        \vspace*{85.25bp}\parbox[t][18bp][t]{15cm}{\centering\CJKfamily{STZhongsong}\fontsize{18bp}{23.0625bp}\selectfont\bfseries 西南财经大学}%
-
-        \parbox[t][18bp][t]{15cm}{\centering\CJKfamily{STZhongsong}\fontsize{18bp}{23.0625bp}\selectfont\bfseries 本科毕业论文原创性及知识产权声明}%
-
-        \vspace{20.625bp}\parbox[t]{15cm}{\sffamily\CJKfamily{STZhongsong}\fontsize{12bp}{15bp}\selectfont\leavevmode{\parindent=2em\indent}本人郑重声明：所呈交的毕业论文是本人在导师的指导下取得的成果，论文写作严格遵循学术规范。对本论文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本毕业论文引起的法律结果完全由本人承担。}%
-
-        \vspace{9bp}\parbox[t]{15cm}{\sffamily\CJKfamily{STZhongsong}\fontsize{12bp}{15bp}\selectfont\leavevmode{\parindent=2em\indent}本毕业论文成果归西南财经大学所有。}%
-
-        \vspace{40.625bp}\parbox[t]{15cm}{\sffamily\CJKfamily{STZhongsong}\fontsize{12bp}{15bp}\selectfont\leavevmode{\parindent=2em\indent}特此声明}%
-
-        \vspace{180bp}
-        \parbox[t][12bp][t]{\textwidth}{\sffamily\CJKfamily{zhsong}\fontsize{12bp}{35bp}\selectfont\hspace*{300bp}\bfseries 毕业论文作者签名：}%
-
-        \vspace{9bp}\parbox[t][12bp][t]{\textwidth}{\sffamily\CJKfamily{zhsong}\fontsize{12bp}{35bp}\selectfont\hspace*{350bp}\bfseries 作者专业：}%
-
-        \vspace{9bp}\parbox[t][12bp][t]{\textwidth}{\sffamily\CJKfamily{zhsong}\fontsize{12bp}{35bp}\selectfont\hspace*{350bp}\bfseries 作者学号：}%
-
-        \vspace{9bp}
-        \parbox[t][12bp][t]{\textwidth}{\swufe@SimSun\CJKfamily{zhsong}\fontsize{12bp}{35bp}\selectfont\hspace*{290bp}\bfseries{\swufe@signdate}}%
-
-        \vspace{\fill}%
-    }%
-    \clearpage%
-}
 
 % 启用页眉页脚
 \AtBeginDocument{\pagestyle{swufe-bachelor}}
 
-\AtEndDocument{\includepdf{swufe-Logo/lastpage.pdf}}
+
