@@ -57,9 +57,11 @@
 % 调用基类 CTeX Article
 \LoadClass[fontset=none,zihao=-4]{ctexart}
 
-
+\renewcommand{\maketitle}{\relax} % 取消\maketitle 的定义
 \renewcommand{\tableofcontents}{} %取消 \tableofcontents 的定义
 \DeclareOption{final}{
+    % 恢复\maketitle 的定义
+    \renewcommand{\maketitle}{\par \begingroup \renewcommand \thefootnote {\@fnsymbol \c@footnote }\def \@makefnmark {\rlap {\@textsuperscript {\normalfont \@thefnmark }}}\long \def \@makefntext ##1{\parindent 1em\noindent \hb@xt@ 1.8em{\hss \@textsuperscript {\normalfont \@thefnmark }}##1}\if@twocolumn \ifnum \col@number =\@ne \@maketitle \else \twocolumn [\@maketitle ]\fi \else \newpage \global \@topnum \z@ \@maketitle \fi \thispagestyle {plain}\@thanks \endgroup \setcounter {footnote}{0}\global \let \thanks \relax \global \let \maketitle \relax \global \let \@maketitle \relax \global \let \@thanks \@empty \global \let \@author \@empty \global \let \@date \@empty \global \let \@title \@empty \global \let \title \relax \global \let \author \relax \global \let \date \relax \global \let \and \relax}
     % 恢复 \tableofcontents 的定义
     \renewcommand{\tableofcontents}{\section *{\contentsname \@mkboth {\MakeUppercase \contentsname }{\MakeUppercase \contentsname }}\@starttoc {toc}}
 % 制作封面
@@ -174,6 +176,7 @@
 
 % 设置字体
 \RequirePackage{fontspec}
+\RequirePackage{lmodern}
 % 设置脚注格式，每页清零
 \RequirePackage[stable,perpage]{footmisc}
 % 页边距设置
