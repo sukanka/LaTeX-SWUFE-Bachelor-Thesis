@@ -268,9 +268,10 @@
     \setfoot{}{}{}%
 }
 
-% 定义 \unnumberedsection 命令，用以方便地加入一个无标号的小标题
-\newcommand{\unnumberedsection}[1]{\phantomsection\addcontentsline{toc}{section}{#1}\section*}
 
+% 修改一级标题格式 和修复二级标题格式
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 % 设置一、二、三级小标题格式
 \titleformat{\section}{\filcenter\CJKfamily{STZhongsong}\fontsize{22bp}{33bp}\selectfont}{\thesection}{1em}{}
 \titlespacing{\section}{0bp}{66bp}{44bp}
@@ -289,9 +290,9 @@
 \titlecontents{subsection}[2em]{}{\CJKfamily{zhsong}\fontsize{12bp}{12bp}\thecontentslabel\hspace{1em}}{}{\titlerule*[0.25em]{.}\thecontentspage}
 \titlecontents{subsubsection}[4em]{}{\CJKfamily{zhsong}\fontsize{12bp}{12bp}\thecontentslabel\hspace{1em}}{}{\titlerule*[0.25em]{.}\thecontentspage}
 
-% 设置参考文献格式
-\newlength{\bibitemsep}
-\AtBeginDocument{\setlength{\bibitemsep}{0pt}}
+% % 设置参考文献格式
+% \newlength{\bibitemsep}
+% \AtBeginDocument{\setlength{\bibitemsep}{0pt}}
 
 % 设置 \autoref 格式
 \def\figureautorefname{图}%
@@ -310,6 +311,7 @@
 \def\AMSautorefname{公式}%
 \def\theoremautorefname{定理}%
 \def\pageautorefname{页面}%
+\newcommand{\algorithmautorefname}{算法}
 
 % PDF 元数据设置
 \AtBeginDocument{\hypersetup{pdfinfo={
@@ -367,11 +369,9 @@
 \end{center}
 \par \begin{bfseries}
 }{\end{bfseries}\clearpage \pagenumbering{arabic}}
-\newcommand{\keywordsen}[1]{\par\noindent Keywords: #1}
+\newcommand{\keywordsen}[1]{\par Keywords: #1}
 
 
 
 % 启用页眉页脚
 \AtBeginDocument{\pagestyle{swufe-bachelor}}
-
-
