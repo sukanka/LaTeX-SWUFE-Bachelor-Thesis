@@ -1,43 +1,5 @@
 % 设置参考文献格式， 
-% TeXLive 2020仅使用 \usepackage[backend=biber,style=gb7714-2015,sorting=gb7714-2015,gblanorder=chineseahead,sortlocale=zh__pinyin]{biblatex} 即可 
-
 \usepackage[backend=biber,style=gb7714-2015,sorting=gb7714-2015,gblanorder=chineseahead,sortlocale=zh__pinyin]{biblatex}
-
-
-\makeatletter
-    \DeclareSortingTemplate{gb7714-2015}{
-      \sort{
-        \field{presort}
-      }
-      \sort[final]{
-        \field{sortkey}
-      }
-      \sort{
-    	\field{language}%language
-    	}
-      \sort{%[direction=descending]
-        \field{sortname}
-        \field{author}
-        \field{editor}
-        \field{translator}
-      }
-      \sort{
-        \field{sortyear}
-        \field{year}
-      }
-      \sort{
-        \field{sorttitle}
-        \field{title}
-      }
-      \sort{
-        \field{volume}
-        \literal{0}
-      }
-    }
-    
-\makeatother
-
-
 
 % 从 ref.bib 中读入参考文献
 \addbibresource{body/ref.bib}
